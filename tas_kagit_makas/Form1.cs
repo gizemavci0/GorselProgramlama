@@ -141,18 +141,48 @@ namespace tas_kagit_makas
         {
             if(kullanıcı_skor == 3)
             {
-                MessageBox.Show(kullanıcı_skor+"-"+rakip_skor+" skor ile\nKAZANDINIZ");
-                button1.Enabled = false;
-                button2.Enabled = false;
-                button3.Enabled = false;
+                
+                oyun_sonu(1);
+                
             }
 
             if (rakip_skor == 3)
             {
-                MessageBox.Show(kullanıcı_skor + "-" + rakip_skor + " skor ile\nKAYBETTİNİZ");
-                button1.Enabled = false;
-                button2.Enabled = false;
-                button3.Enabled = false;
+                
+                oyun_sonu(0);
+              
+            }
+        }
+
+        private void oyun_sonu(int x)
+        {
+            DialogResult result;
+            if (x == 0)
+            {
+                result = MessageBox.Show(kullanıcı_skor + "-" + rakip_skor + " skor ile\nKAYBETTINIZ\nTekrar oynamak ister misiniz?", "Oyun Sonu", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            }
+            else
+            {
+                result = MessageBox.Show(kullanıcı_skor + "-" + rakip_skor + " skor ile\nKAZANDINIZ\nTekrar oynamak ister misiniz?", "Oyun Sonu", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            
+             }
+
+            if (result == DialogResult.Yes)
+            {
+                kullanıcı_skor = 0;
+                rakip_skor = 0;
+                label1.Text = "SECİMİN"; //kullanıcı seçim
+                label2.Text = "RAKİP SECİM"; //rakip seçimi
+                label4.Text = Convert.ToString(0);
+                label5.Text = Convert.ToString(0);
+                label3.Text = "DURUM";
+                label3.BackColor = Color.WhiteSmoke;
+
+            }
+            else
+            {
+                // Kullanıcı 'No' tuşuna bastı, form kapatılıyor
+                this.Close();
             }
         }
 
